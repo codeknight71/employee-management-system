@@ -1,0 +1,16 @@
+<div class="employee-card">
+  <div class="card-header">
+    <h3>{{ employee.name }}</h3>
+    <span class="badge">{{ employee.department }}</span>
+  </div>
+  <div class="card-body">
+    <p><strong>Position:</strong> {{ employee.position }}</p>
+    <p><strong>Email:</strong> {{ employee.email }}</p>
+    <p><strong>Salary:</strong> ${{ employee.salary | number }}</p>
+    <p><strong>Join Date:</strong> {{ employee.joinDate | date }}</p>
+  </div>
+  <div class="card-actions">
+    <button [routerLink]="['/employee', employee.id]" class="btn btn-primary">View Details</button>
+    <button (click)="onDelete()" class="btn btn-danger">Delete</button>
+  </div>
+</div>

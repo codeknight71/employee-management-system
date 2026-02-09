@@ -1,0 +1,56 @@
+<div class="detail-container" *ngIf="employee; else loading">
+  <div class="detail-header">
+    <button (click)="goBack()" class="btn btn-back">← Back to List</button>
+    <h1>Employee Details</h1>
+  </div>
+
+  <div class="detail-card">
+    <div class="detail-section">
+      <h2>{{ employee.name }}</h2>
+      <span class="badge">{{ employee.department }}</span>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-item">
+        <label>Employee ID</label>
+        <p>{{ employee.id }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Email</label>
+        <p>{{ employee.email }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Department</label>
+        <p>{{ employee.department }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Position</label>
+        <p>{{ employee.position }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Salary</label>
+        <p>${{ employee.salary | number }}</p>
+      </div>
+
+      <div class="detail-item">
+        <label>Join Date</label>
+        <p>{{ employee.joinDate | date:'fullDate' }}</p>
+      </div>
+    </div>
+
+    <div class="detail-actions">
+      <button (click)="onEdit()" class="btn btn-primary">Edit Employee</button>
+      <button (click)="onDelete()" class="btn btn-danger">Delete Employee</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading">
+    <p>Loading employee details...</p>
+  </div>
+</ng-template>

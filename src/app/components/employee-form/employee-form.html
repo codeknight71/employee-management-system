@@ -1,0 +1,115 @@
+<div class="form-container">
+  <h2>{{ isEditMode ? 'Edit Employee' : 'Add New Employee' }}</h2>
+  
+  <form #employeeForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Full Name *</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        [(ngModel)]="employee.name" 
+        required 
+        #name="ngModel"
+        class="form-control"
+      />
+      <div *ngIf="name.invalid && name.touched" class="error">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input 
+        type="email" 
+        id="email" 
+        name="email" 
+        [(ngModel)]="employee.email" 
+        required 
+        email
+        #email="ngModel"
+        class="form-control"
+      />
+      <div *ngIf="email.invalid && email.touched" class="error">
+        <span *ngIf="email.errors?.['required']">Email is required</span>
+        <span *ngIf="email.errors?.['email']">Invalid email format</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="department">Department *</label>
+      <select 
+        id="department" 
+        name="department" 
+        [(ngModel)]="employee.department" 
+        required
+        #department="ngModel"
+        class="form-control"
+      >
+        <option value="">Select Department</option>
+        <option *ngFor="let dept of departments" [value]="dept">{{ dept }}</option>
+      </select>
+      <div *ngIf="department.invalid && department.touched" class="error">
+        Department is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="position">Position *</label>
+      <input 
+        type="text" 
+        id="position" 
+        name="position" 
+        [(ngModel)]="employee.position" 
+        required
+        #position="ngModel"
+        class="form-control"
+      />
+      <div *ngIf="position.invalid && position.touched" class="error">
+        Position is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="salary">Salary *</label>
+      <input 
+        type="number" 
+        id="salary" 
+        name="salary" 
+        [(ngModel)]="employee.salary" 
+        required
+        min="0"
+        #salary="ngModel"
+        class="form-control"
+      />
+      <div *ngIf="salary.invalid && salary.touched" class="error">
+        Valid salary is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="joinDate">Join Date *</label>
+      <input 
+        type="date" 
+        id="joinDate" 
+        name="joinDate" 
+        [(ngModel)]="employee.joinDate" 
+        required
+        #joinDate="ngModel"
+        class="form-control"
+      />
+      <div *ngIf="joinDate.invalid && joinDate.touched" class="error">
+        Join date is required
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="employeeForm.invalid" class="btn btn-primary">
+        {{ isEditMode ? 'Update' : 'Add' }} Employee
+      </button>
+      <button type="button" (click)="onCancel()" class="btn btn-secondary">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

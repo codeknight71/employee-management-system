@@ -1,0 +1,30 @@
+<div class="employee-list-container">
+  <div class="header">
+    <h1>Employee Management System</h1>
+    <button routerLink="/add-employee" class="btn btn-success">+ Add New Employee</button>
+  </div>
+
+  <div class="search-bar">
+    <input 
+      type="text" 
+      placeholder="Search by name, department, or position..." 
+      (input)="filterEmployees($event)"
+      class="search-input"
+    />
+  </div>
+
+  @if (filteredEmployees.length > 0) {
+    <div class="employee-grid">
+      @for (employee of filteredEmployees; track employee.id) {
+        <app-employee-card 
+          [employee]="employee"
+          (deleteEmployee)="handleDelete($event)">
+        </app-employee-card>
+      }
+    </div>
+  } @else {
+    <div class="no-data">
+      <p>No employees found</p>
+    </div>
+  }
+</div>
